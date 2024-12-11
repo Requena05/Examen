@@ -65,10 +65,16 @@ class CrearCuentaActivity : AppCompatActivity() {
 
             }
             //el email no puede estar vacio y tiene que tener un formato de email valido
-            if (email.isNotEmpty() && email.contains("@") && email.contains(".")) {
+            if (email.isNotEmpty() && email.contains("@") && email.contains(".") && email.endsWith(".com") && email.length < 50 && email.length > 5) {
                 campoemail.error =null
                 checks++
+                if(Datoscuenta.contains(email)){
+                    campoemail.error = "El email ya existe"
+                    checks--
+
+                }else{
                 editor.putString("email", email)
+                }
             }else{
                 campoemail.error = "El campo no puede estar vacio o no tiene un formato valido"
             }
